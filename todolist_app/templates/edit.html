@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+
+{% block title  %}
+    <title>Editing</title>
+{% endblock title %}
+
+{% block body %}
+    <div class="container">
+    </br>
+        {% if task_obj.owner == request.user %}
+            <form method="POST" class="row">
+                {% csrf_token %}      
+                <label class="col-4"></label>         
+                <input type="text" class="col-6" name="task" placeholder="{{task_obj.task}}" value="{{task_obj.task}}">
+                <input type="hidden" name="do" value="{{task_obj.do}}">
+                <button type="submit" class="btn btn-primary col-2">Add</button>
+            </form>
+        {% else %}
+            <p>Access Denied</p>
+        {% endif %}    
+    </div>
+{% endblock body %}
